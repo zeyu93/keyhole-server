@@ -7,8 +7,7 @@ const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 3001;
 const TWITTERURL = "https://api.twitter.com/2/tweets/search/recent?query";
-const TOKEN =
-  "AAAAAAAAAAAAAAAAAAAAAH3gQwEAAAAAPifKn4xpPF8gqKMU3t1gFlzsw40%3DLm8CVzNUO3VpPmimEHFbvgFFwUd57rx9aT1MwLYmO0P0vFzYbL";
+const TOKEN = process.env.SECRET_TWITTER_TOKEN;
 const MAX_RESULTS = 1000;
 const RESULTS_PER_REQUEST = 25;
 
