@@ -2,6 +2,8 @@ const express = require("express");
 // using axios bcuz it is a promoise based API
 const axios = require("axios");
 const path = require("path");
+const dotenv = require("dotenv");
+dotenv.config();
 const publicPath = path.join(__dirname, "public");
 const cors = require("cors");
 const app = express();
@@ -11,8 +13,7 @@ const TOKEN = process.env.SECRET_TWITTER_TOKEN;
 const MAX_RESULTS = 1000;
 const RESULTS_PER_REQUEST = 25;
 
-app.use(express.static(publicPath));
-
+console.log("TOKEN", TOKEN);
 const axiosSearchInstance = axios.create({
   baseURL: TWITTERURL,
   headers: { Authorization: `Bearer ${TOKEN}` },
@@ -29,10 +30,6 @@ app.get("/", cors(), async (req, res, next) => {
   } catch (e) {
     return next(e);
   }
-});
-
-app.get("*", (req, res) => {
-  res.sendFile(path.join(publicPath, "index.html"));
 });
 
 app.listen(PORT, () => console.log("server running"));
